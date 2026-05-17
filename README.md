@@ -54,6 +54,8 @@ projectmage expand: Plain-Language Credit Explainer
 ```
 Produces: one-line pitch, MVP definition, milestones, risks & open questions, success metrics, stakeholder-ready paragraph.
 
+The idea name is the **exact H2 heading** from a previous ideation run's saved output file. The agent looks it up in `~/.hermes/output/projectmage/{company}/` automatically. If it can't find it, it will ask you to paste the description.
+
 ### Launch — go-to-market brief
 ```
 projectmage launch: Campaign Attribution Scorecard

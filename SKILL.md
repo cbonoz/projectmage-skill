@@ -166,6 +166,14 @@ If the user invokes a lifecycle mode on a specific idea, run the appropriate wor
 
 **Invocation:** `projectmage expand: {idea name}`
 
+### Idea Resolution
+
+Before running, locate the idea's content:
+1. Search `~/.hermes/output/projectmage/{company-slug}/` for a file containing an H2 heading matching `{idea name}` (case-insensitive, partial match is fine)
+2. If found: load the full idea block (What it does, Why it matters, How it works) as context for the deep-dive
+3. If not found: ask the user — `"I couldn't find '{idea name}' in your saved outputs. Can you paste the idea description or tell me which run it came from?"`
+4. If multiple files match: list them and ask which one to use
+
 Load context (Step 1). Then produce:
 
 ```
@@ -197,6 +205,10 @@ Save to `~/.hermes/output/projectmage/{company-slug}/{YYYY-MM-DD}-expand-{idea-s
 ## Lifecycle Mode: `launch`
 
 **Invocation:** `projectmage launch: {idea name}`
+
+### Idea Resolution
+
+Same as `expand` — search saved output files for the idea by H2 heading. Load the idea block before producing the brief.
 
 Load context (Step 1). Then produce a go-to-market brief:
 
@@ -232,6 +244,10 @@ Save to `~/.hermes/output/projectmage/{company-slug}/{YYYY-MM-DD}-launch-{idea-s
 ## Lifecycle Mode: `measure`
 
 **Invocation:** `projectmage measure: {idea name}`
+
+### Idea Resolution
+
+Same as `expand` — search saved output files for the idea by H2 heading. Load the idea block before producing the measurement framework.
 
 Load context (Step 1). Then produce a measurement framework:
 
