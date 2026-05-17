@@ -54,7 +54,7 @@ projectmage expand: Plain-Language Credit Explainer
 ```
 Produces: one-line pitch, MVP definition, milestones, risks & open questions, success metrics, stakeholder-ready paragraph.
 
-The idea name is the **exact H2 heading** from a previous ideation run's saved output file. The agent looks it up in `~/.hermes/output/projectmage/{company}/` automatically. If it can't find it, it will ask you to paste the description.
+The idea name comes from a previous ideation run's saved output. You don't need to get it exactly right — the agent fuzzy-matches your input against all saved idea headings (partial words, synonyms, and paraphrases all work). If it finds one clear match it proceeds automatically; if there are multiple plausible matches it asks you to confirm; if nothing matches it shows you the full list of saved ideas.
 
 ### Launch — go-to-market brief
 ```

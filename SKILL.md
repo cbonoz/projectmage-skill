@@ -169,10 +169,11 @@ If the user invokes a lifecycle mode on a specific idea, run the appropriate wor
 ### Idea Resolution
 
 Before running, locate the idea's content:
-1. Search `~/.hermes/output/projectmage/{company-slug}/` for a file containing an H2 heading matching `{idea name}` (case-insensitive, partial match is fine)
-2. If found: load the full idea block (What it does, Why it matters, How it works) as context for the deep-dive
-3. If not found: ask the user — `"I couldn't find '{idea name}' in your saved outputs. Can you paste the idea description or tell me which run it came from?"`
-4. If multiple files match: list them and ask which one to use
+1. Read all files in `~/.hermes/output/projectmage/{company-slug}/` and collect every H2 heading across all of them
+2. Find the best match for `{idea name}` using fuzzy/semantic judgment — exact matches, partial word matches, synonyms, paraphrases, and abbreviations all count. Use the closest match with confidence.
+3. If one clear match: load the full idea block (What it does, Why it matters, How it works) as context before proceeding
+4. If two or more plausible matches: briefly list them (one line each) and ask the user which one to use
+5. If no reasonable match at all: tell the user — show the full list of available idea headings so they can pick or correct the name
 
 Load context (Step 1). Then produce:
 
@@ -208,7 +209,7 @@ Save to `~/.hermes/output/projectmage/{company-slug}/{YYYY-MM-DD}-expand-{idea-s
 
 ### Idea Resolution
 
-Same as `expand` — search saved output files for the idea by H2 heading. Load the idea block before producing the brief.
+Same as `expand` — fuzzy/semantic match against all H2 headings in saved output files. Load the idea block before producing the brief.
 
 Load context (Step 1). Then produce a go-to-market brief:
 
@@ -247,7 +248,7 @@ Save to `~/.hermes/output/projectmage/{company-slug}/{YYYY-MM-DD}-launch-{idea-s
 
 ### Idea Resolution
 
-Same as `expand` — search saved output files for the idea by H2 heading. Load the idea block before producing the measurement framework.
+Same as `expand` — fuzzy/semantic match against all H2 headings in saved output files. Load the idea block before producing the measurement framework.
 
 Load context (Step 1). Then produce a measurement framework:
 
