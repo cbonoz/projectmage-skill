@@ -35,7 +35,7 @@ The user provides two things:
 2. **Feature area or problem statement** — either a short slug (`search`, `onboarding`) or a natural language problem statement (`"attribution doesn't recommend what to do next"`). Both are valid. Problem statements will be interpreted into a focused feature area before ideation.
 
 Optional modifiers:
-- `--count N` — how many ideas to generate (default: 5)
+- `--count N` — how many ideas to generate (default: 3)
 - `--mode [wild|grounded|moonshot]` — creativity dial (default: `grounded`)
   - `grounded`: realistic, shippable within a quarter
   - `wild`: stretch ideas, novel mechanics, unexpected angles
@@ -94,7 +94,7 @@ The user's input after `projectmage:` is either:
 - **A problem statement** (`"attribution doesn't recommend what to do next"`) — interpret it: extract the underlying feature area the problem points to, state it explicitly (e.g. `Feature area: next-step recommendations in attribution`), and confirm it in one line before proceeding
 
 Then extract any modifiers:
-- `count` (default: 5)
+- `count` (default: 3)
 - `mode` (default: `grounded`)
 - `audience` (optional)
 - `constraint` (optional)

@@ -33,7 +33,7 @@ Both short slugs and natural language problem statements work. Output is saved a
 | Flag | Options | Default |
 |---|---|---|
 | `--mode` | `grounded`, `wild`, `moonshot` | `grounded` |
-| `--count` | any number | `5` |
+| `--count` | any number | `3` |
 | `--audience` | e.g. `enterprise`, `new users` | all users |
 | `--constraint` | e.g. `"no new tables"` | none |
 
