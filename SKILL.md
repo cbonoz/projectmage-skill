@@ -1,28 +1,40 @@
 ---
 name: projectmage
-title: ProjectMage — Company Feature Ideation
-description: "Use when user says 'projectmage' or wants to brainstorm/ideate product features for a company."
-version: 1.0.0
+title: ProjectMage — Product Feature Lifecycle
+description: "Use when user says 'projectmage' or wants to ideate, expand, launch, or measure product features for a company."
+version: 1.1.0
 platforms: [linux, macos, windows]
-tags: [product, ideation, features, strategy, brainstorming]
+tags: [product, ideation, features, strategy, brainstorming, launch, metrics]
 category: productivity
 ---
 
-# ProjectMage: Company Feature Ideation
+# ProjectMage: Product Feature Lifecycle
 
 ## When to Use
 
 Trigger this skill when the user:
 - Starts a message with `projectmage` (any casing)
-- Asks to ideate, brainstorm, or generate feature ideas for a company or product
-- Uses commands like `projectmage save:`, `projectmage switch:`, or `projectmage list`
-- Wants product strategy or feature inspiration grounded in a specific company context
+- Asks to ideate, brainstorm, expand, launch-plan, or define success metrics for product features
+- Uses commands like `projectmage save:`, `projectmage switch:`, `projectmage list`, `projectmage expand:`, `projectmage launch:`, or `projectmage measure:`
+- Wants product strategy grounded in a specific company and feature domain context
 
 **Don't use for:** general brainstorming unrelated to a specific company's product, or one-off creative ideation with no company context.
 
 ## Overview
 
-ProjectMage takes stored company context and a **feature area** parameter, then generates a structured set of actionable feature ideas grounded in the company's product, market, and constraints.
+ProjectMage covers the full product feature lifecycle — from raw ideation through deep-dive scoping, go-to-market planning, and success measurement — all grounded in stored company and feature domain context.
+
+## Commands
+
+| Command | What it does |
+|---|---|
+| `projectmage: {input}` | Ideate features for a problem area or feature slug |
+| `projectmage expand: {idea name}` | Deep-dive one idea: milestones, risks, MVP, pitch |
+| `projectmage launch: {idea name}` | Draft a go-to-market brief for a feature |
+| `projectmage measure: {idea name}` | Define success metrics and a measurement framework |
+| `projectmage save: {Company} — {Domain}` | Create or update a context profile |
+| `projectmage switch: {slug}` | Change the active context |
+| `projectmage list` | Show all saved contexts |
 
 ## Inputs
 
@@ -144,29 +156,130 @@ After generating ideas and the strategic thread, always save the full output to 
 
 Example path: `output/projectmage/hubspot/2026-05-17-attribution-explainability.md`
 
-### Step 7 — Optionally deep-dive
+### Step 7 — Optionally deep-dive (or run a lifecycle mode)
 
-If the user asks to expand on a specific idea, go deeper:
-- Break it into milestones
-- Identify risks and open questions
-- Suggest success metrics
-- Draft a 1-paragraph pitch for it
+If the user invokes a lifecycle mode on a specific idea, run the appropriate workflow below instead of ideation.
+
+---
+
+## Lifecycle Mode: `expand`
+
+**Invocation:** `projectmage expand: {idea name}`
+
+Load context (Step 1). Then produce:
+
+```
+## {Idea Name} — Deep Dive
+
+**One-line pitch:** A single sentence that sells the idea to an engineering lead.
+
+**Problem it solves:** 2–3 sentences grounding it in a real user pain from the loaded context.
+
+**MVP definition:** What is the smallest version worth shipping? What gets cut to get there?
+
+**Milestones:**
+1. {milestone} — {what's done / what's validated}
+2. ...
+
+**Risks & open questions:**
+- {risk or question}
+- ...
+
+**Success metrics:** How will you know this worked? (see `measure` mode for full framework)
+
+**1-paragraph pitch:** A stakeholder-ready paragraph suitable for a product review or roadmap doc.
+```
+
+Save to `~/.hermes/output/projectmage/{company-slug}/{YYYY-MM-DD}-expand-{idea-slug}.md`.
+
+---
+
+## Lifecycle Mode: `launch`
+
+**Invocation:** `projectmage launch: {idea name}`
+
+Load context (Step 1). Then produce a go-to-market brief:
+
+```
+## {Idea Name} — Launch Brief
+
+**Feature summary:** One sentence.
+
+**Target audience:** Who is this for first? Which user segment gets the most value?
+
+**Rollout strategy:**
+- Phase 1 (alpha/beta): who, how many, what you're testing
+- Phase 2 (limited GA): criteria to expand
+- Phase 3 (full GA): criteria for full rollout
+
+**Positioning:** How is this described to users? One headline + one subheadline.
+
+**In-product entry points:** Where does the user discover this feature?
+
+**Documentation & education:** What needs to be written (help articles, tooltips, onboarding)?
+
+**Instrumentation:** What events must be tracked before launch?
+
+**Launch risks:** What could go wrong at rollout?
+
+**Internal comms:** What do sales, support, and CS need to know before it ships?
+```
+
+Save to `~/.hermes/output/projectmage/{company-slug}/{YYYY-MM-DD}-launch-{idea-slug}.md`.
+
+---
+
+## Lifecycle Mode: `measure`
+
+**Invocation:** `projectmage measure: {idea name}`
+
+Load context (Step 1). Then produce a measurement framework:
+
+```
+## {Idea Name} — Measurement Framework
+
+**North star metric:** The single number that best captures whether this feature is working.
+
+**Primary metrics:**
+| Metric | What it measures | Target / threshold |
+|---|---|---|
+| ... | ... | ... |
+
+**Counter-metrics:** What could go up that would mean the feature is backfiring?
+
+**Instrumentation required:**
+- Event: `{event_name}` — triggered when {action}
+- ...
+
+**Measurement timeline:**
+- Week 1–2: baseline and early signal
+- Week 4: first meaningful read
+- Week 8–12: decision point (iterate, expand, or kill)
+
+**Qualitative signals:** What user research or feedback channels will supplement the data?
+
+**Decision criteria:** What result means "ship to everyone"? What means "iterate"? What means "kill"?
+```
+
+Save to `~/.hermes/output/projectmage/{company-slug}/{YYYY-MM-DD}-measure-{idea-slug}.md`.
 
 ## Example Invocations
 
 ```
+# Context setup
 projectmage save: Acme Inc — attribution reporting
-```
+projectmage switch: notion-search
 
-```
-projectmage save: Notion — search
-```
-
-```
+# Ideation
 projectmage: search
 projectmage: "attribution doesn't recommend what to do next"
 projectmage: onboarding --mode wild --count 8
 projectmage: collaboration --audience enterprise --constraint "no new database tables"
+
+# Lifecycle modes
+projectmage expand: Plain-Language Credit Explainer
+projectmage launch: Campaign Attribution Scorecard
+projectmage measure: Attribution Health Score
 ```
 
 ## Output Format
