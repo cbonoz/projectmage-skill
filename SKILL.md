@@ -77,9 +77,11 @@ Read `references/active.txt` to get the active context slug (e.g. `hubspot-attri
 
 **Do not attempt to ideate without a loaded context. Never guess or proceed on empty context.**
 
-#### Step 1a — Save flow (when context is missing)
+#### Step 1a — Save flow (when context is missing or triggered by `projectmage save:`)
 
-1. Ask: `"What company and feature domain are you working on? (e.g. HubSpot — Attribution Reporting)"`
+The `save:` command format is: `projectmage save: {Company} — {Feature Domain}` (e.g. `projectmage save: Acme Inc — attribution reporting`).
+
+1. If the user provided `save: {Company} — {Domain}`, extract both from the command. Otherwise ask: `"What company and feature domain are you working on? (e.g. Acme Inc — Attribution Reporting)"`
 2. If the company is well-known, infer a draft context from training knowledge and show it to the user for confirmation
 3. Ask the user to correct or add anything (especially pain points and goals, which are hard to infer)
 4. Write the confirmed context to `references/{company}-{domain}-context.md`
@@ -157,15 +159,18 @@ If the user asks to expand on a specific idea, go deeper:
 ## Example Invocations
 
 ```
-Use projectmage for Notion, feature area: search
+projectmage save: Acme Inc — attribution reporting
 ```
 
 ```
-Use projectmage. Company: [inline context block]. Feature area: onboarding. --mode wild --count 8
+projectmage save: Notion — search
 ```
 
 ```
-Use projectmage. Feature area: collaboration. --audience enterprise --constraint "no new database tables"
+projectmage: search
+projectmage: "attribution doesn't recommend what to do next"
+projectmage: onboarding --mode wild --count 8
+projectmage: collaboration --audience enterprise --constraint "no new database tables"
 ```
 
 ## Output Format

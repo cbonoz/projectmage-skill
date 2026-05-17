@@ -9,10 +9,10 @@ Feature ideation grounded in company and domain context. Give it a problem area,
 First time for a new company/domain:
 
 ```
-projectmage save: attribution reporting
+projectmage save: Acme Inc — attribution reporting
 ```
 
-The agent infers context from its training knowledge, shows it to you, you correct or add anything, and it saves the profile and sets it active. After that, no setup needed.
+Company name comes first, then the feature domain. The agent infers context from its training knowledge, shows it to you, you correct or add anything, and it saves the profile and sets it active. After that, no setup needed.
 
 ---
 
@@ -26,7 +26,7 @@ projectmage: billing --count 8 --audience enterprise
 projectmage: notifications --constraint "no backend changes"
 ```
 
-Both short slugs and natural language problem statements work. Output is saved automatically to `~/.hermes/output/projectmage/{company}/{date}-{feature-area}.md`.
+Both short slugs and natural language problem statements work. Output is saved automatically after each run.
 
 ### Modifiers
 
@@ -57,11 +57,13 @@ Context files live in `references/` as `{company}-{domain}-context.md`. The acti
 
 ## Output
 
-Every run saves a Markdown file to:
+Every run saves a Markdown file. The default path is:
 
 ```
-~/.hermes/output/projectmage/{company-slug}/{YYYY-MM-DD}-{feature-area}.md
+output/projectmage/{company-slug}/{YYYY-MM-DD}-{feature-area}.md
 ```
+
+The output directory can be configured to match your environment (e.g. a local folder, a shared drive, or your agent's output path).
 
 See [PLAN.md](PLAN.md) for architecture and implementation phases.
 
