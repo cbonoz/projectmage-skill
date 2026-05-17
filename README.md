@@ -9,7 +9,7 @@ Feature ideation grounded in company and domain context. Give it a problem area,
 First time for a new company/domain:
 
 ```
-projectmage save: HubSpot attribution reporting
+projectmage save: attribution reporting
 ```
 
 The agent infers context from its training knowledge, shows it to you, you correct or add anything, and it saves the profile and sets it active. After that, no setup needed.
