@@ -4,11 +4,8 @@ title: ProjectMage — Company Feature Ideation
 description: "Use when user says 'projectmage' or wants to brainstorm/ideate product features for a company."
 version: 1.0.0
 platforms: [linux, macos, windows]
-metadata:
-  hermes:
-    tags: [product, ideation, features, strategy, brainstorming]
-    category: productivity
-    requires_toolsets: []
+tags: [product, ideation, features, strategy, brainstorming]
+category: productivity
 ---
 
 # ProjectMage: Company Feature Ideation
@@ -100,7 +97,6 @@ Then extract any modifiers:
 - `mode` (default: `grounded`)
 - `audience` (optional)
 - `constraint` (optional)
-- `constraint` (optional)
 
 ### Step 3 — Anchor to the product
 
@@ -140,13 +136,13 @@ After the ideas, add a short **"What ties these together"** section (2–4 sente
 
 After generating ideas and the strategic thread, always save the full output to a file:
 
-- Path: `~/.hermes/output/projectmage/{company-slug}/{YYYY-MM-DD}-{feature-area-slug}.md`
+- Path: `output/projectmage/{company-slug}/{YYYY-MM-DD}-{feature-area-slug}.md` (relative to the agent's working output directory)
 - Create the directory if it doesn't exist
 - File header should include: company name, feature domain, feature area, mode, date, and any modifiers used
 - Content: the full ideation output exactly as shown to the user
-- Confirm to the user: `"Saved to ~/.hermes/output/projectmage/{company-slug}/{YYYY-MM-DD}-{feature-area-slug}.md"`
+- Confirm to the user with the path where the file was saved
 
-Example path: `~/.hermes/output/projectmage/hubspot/2026-05-17-attribution-explainability.md`
+Example path: `output/projectmage/hubspot/2026-05-17-attribution-explainability.md`
 
 ### Step 7 — Optionally deep-dive
 
