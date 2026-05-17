@@ -1,6 +1,6 @@
 # ProjectMage
 
-Feature ideation and lifecycle planning grounded in company and domain context. Ideate features, deep-dive on the best ones, plan launches, and define success metrics — all from a single skill.
+Feature ideation grounded in company and domain context. Give it a problem area, get structured feature ideas back.
 
 ---
 
@@ -33,7 +33,7 @@ Both short slugs and natural language problem statements work. Output is saved a
 | Flag | Options | Default |
 |---|---|---|
 | `--mode` | `grounded`, `wild`, `moonshot` | `grounded` |
-| `--count` | any number | `5` |
+| `--count` | any number | `3` |
 | `--audience` | e.g. `enterprise`, `new users` | all users |
 | `--constraint` | e.g. `"no new tables"` | none |
 
@@ -41,32 +41,6 @@ Both short slugs and natural language problem statements work. Output is saved a
 - `grounded` — shippable within a quarter, low ambiguity
 - `wild` — novel mechanics, unexpected angles, push beyond obvious
 - `moonshot` — big bets, paradigm shifts, long-horizon thinking
-
----
-
-## Lifecycle Modes
-
-Once an idea is worth pursuing, run it through the rest of the product lifecycle:
-
-### Expand — deep-dive on one idea
-```
-projectmage expand: Plain-Language Credit Explainer
-```
-Produces: one-line pitch, MVP definition, milestones, risks & open questions, success metrics, stakeholder-ready paragraph.
-
-The idea name comes from a previous ideation run's saved output. You don't need to get it exactly right — the agent fuzzy-matches your input against all saved idea headings (partial words, synonyms, and paraphrases all work). If it finds one clear match it proceeds automatically; if there are multiple plausible matches it asks you to confirm; if nothing matches it shows you the full list of saved ideas.
-
-### Launch — go-to-market brief
-```
-projectmage launch: Campaign Attribution Scorecard
-```
-Produces: target audience, rollout strategy (alpha → limited GA → full GA), positioning, in-product entry points, instrumentation requirements, launch risks, internal comms brief.
-
-### Measure — success metrics framework
-```
-projectmage measure: Attribution Health Score
-```
-Produces: north star metric, primary metrics table, counter-metrics, instrumentation events, measurement timeline, decision criteria (ship / iterate / kill).
 
 ---
 
@@ -83,11 +57,13 @@ Context files live in `references/` as `{company}-{domain}-context.md`. The acti
 
 ## Output
 
-Every run saves a Markdown file to:
+Every run saves a Markdown file. The default path is:
 
 ```
-~/.hermes/output/projectmage/{company-slug}/{YYYY-MM-DD}-{mode}-{feature-area}.md
+output/projectmage/{company-slug}/{YYYY-MM-DD}-{feature-area}.md
 ```
+
+The output directory can be configured to match your environment (e.g. a local folder, a shared drive, or your agent's output path).
 
 See [PLAN.md](PLAN.md) for architecture and implementation phases.
 
